@@ -18,7 +18,34 @@
   color: black;
   font-weight: bold;
 }
-
+#form_title{
+  text-align: center;
+  color: rgba(34,158,189,255);
+}
+#login_body{
+  background-color: rgba(248,249,250,255);
+  padding: 1%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+#back_img{
+  background: url(../img/login.png) no-repeat center top;
+  background-size: contain;
+  height: 60%;
+  width: 100%;
+}
+#login_form{
+  display: grid;
+  grid-gap: 2%;
+}
+#SignIn{
+  color: rgb(255, 255, 255);
+  background-color: rgba(34,158,189,0.8);
+  font-weight: bold;
+}
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: 6rem;

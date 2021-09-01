@@ -40,8 +40,40 @@ var getJSONData = function(url){
     });
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
+//Función que se ejecuta una vez que se haya lanzado el evento de que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+//FUNCIÓN DE REDIRECCIÓN
+  if (!localStorage.getItem("Usuario") && !window.location.href.includes("login")){     //Si no detecta que existe algo llamado "Usuario" (ver login.js) y en la url no dice "login"...
+    window.location.href = "./login.html"                                               //...redirigir a login.html (dentro de la ventana, a una locación específica)
+  }
 });
+
+//FUNCIÓN DE CIERRE DE SESIÓN
+const logOff = () =>{         //Defino función de deslogueo
+  localStorage.clear();       //Borra los datos de localStorage
+  window.location.reload();   //Recarga la página
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FUNCIÓN DEL BOTÓN DE CIERRE DE SESIÓN
+document.getElementById("SignOff").addEventListener("click", logOff)
