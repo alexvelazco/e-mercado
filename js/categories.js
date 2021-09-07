@@ -123,14 +123,12 @@ document.addEventListener("DOMContentLoaded", function(e){
         else{
             minCount = undefined;
         }
-
         if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
             maxCount = parseInt(maxCount);
         }
         else{
             maxCount = undefined;
         }
-
         showCategoriesList();
     });
 });

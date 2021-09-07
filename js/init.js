@@ -49,31 +49,13 @@ document.addEventListener("DOMContentLoaded", function(e){
   }
 });
 
+document.getElementById("usertag").innerHTML = localStorage.getItem("Usuario"); //Coloca en el div de nombre de usuario (usertag) el valor de "Usuario" del localStorage
+
 //FUNCIÓN DE CIERRE DE SESIÓN
 const logOff = () =>{         //Defino función de deslogueo
   localStorage.clear();       //Borra los datos de localStorage
   window.location.reload();   //Recarga la página
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //FUNCIÓN DEL BOTÓN DE CIERRE DE SESIÓN
 document.getElementById("SignOff").addEventListener("click", logOff)

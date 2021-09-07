@@ -1,23 +1,4 @@
-.jumbotron, .card-body, .container, .site-header{
-    font-family: 'Raleway', serif !important;
-}
-
-.jumbotron .display-4{
-    font-weight: bold;
-}
-
-.jumbotron {
-  height: 50vh;
-  padding: 5em inherit;
-  margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: black;
-  font-weight: bold;
-}
+/*----------------------------------------ESTILOS LOGIN----------------------------------------*/
 #form_title{
   text-align: center;
   color: rgba(34,158,189,255);
@@ -46,6 +27,80 @@
   background-color: rgba(34,158,189,0.8);
   font-weight: bold;
 }
+/*----------------------------------------ESTILOS LOGIN----------------------------------------*/
+/*----------------------------------------ESTILOS NAV----------------------------------------*/
+#infoUsuario{
+  display: flex;
+  gap: 10px;
+  color: rgb(255, 255, 255);
+}
+#usertag{
+  font-weight: bold;
+}
+#container-menu{
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+#menu{
+  list-style: none;
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin: 0px;
+  background: rgba(52,59,64);
+  width: 100%;
+/* overflow: hidden; */
+  height: 0;
+  transition: all 0.1s;
+  top: 30px;
+  position: absolute;
+  overflow: visible;
+  opacity: 0;
+  visibility: hidden;
+}
+.menu_link:hover{
+  background: rgb(80, 90, 100);
+}
+#container-menu:hover #menu{
+  opacity: 1;
+  visibility: visible;
+  height: max-content;
+  width: max-content;
+}
+.menu_link{
+  display: block;
+  padding: 5px;
+}
+#SignOff{
+  width: 100px;
+  font-weight: 600;
+}
+/*----------------------------------------ESTILOS NAV----------------------------------------*/
+
+.jumbotron, .card-body, .container, .site-header{
+    font-family: 'Raleway', serif !important;
+}
+
+.jumbotron .display-4{
+    font-weight: bold;
+}
+
+.jumbotron {
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #53C0FB;
+  background: url('../img/cover_back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
   .jumbotron {
     padding-top: 6rem;

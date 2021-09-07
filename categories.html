@@ -22,7 +22,19 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-        <button id="SignOff" class="" type="button">Cerrar Sesión</button>                 <!--Botón Para cerrar sesión-->
+        <div class="py-2 d-none d-md-inline-block" id="infoUsuario">
+          <div id="container-menu"> <!-- Div Menú -->
+            <div id="usertag"></div> <!-- Nombre de Usuario -->
+            <div id="desplegador"><i class="fas fa-chevron-down"></i></div> <!-- Botón desplegador -->
+            <ul id="menu">
+              <li class="menu_link"><a href="my-profile.html">Mi perfil</a>
+              </li>
+              <!-- <li class="menu_link"><a href="cart.html">Mi carrito</a></li> -->
+              <li><button id="SignOff" class="" type="button">Cerrar Sesión</button>       <!--Botón cerrar sesión-->
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
     <main role="main" class="pb-5">
@@ -31,7 +43,7 @@
             <p class="lead">Verás aquí todas las categorías del sitio.</p>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row">                                  <!--DIV DE ÓRDENES-->
                 <div class="col text-right">
                     <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                         <label class="btn btn-light active" id="sortAsc" >
@@ -46,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
+            <div class="row justify-content-end">              <!--DIV DE FILTROS-->
               <div class="col-md-6"></div>
                 <div class="col-md-6 col-sm-12 mb-1 container">
                   <div class="row container p-0 m-0">
@@ -68,7 +80,7 @@
                   </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row">                                  <!--DIV DE LISTADO/TABLA DE CATEGORÍAS-->
                 <div class="list-group" id="cat-list-container">
                 </div>
             </div>
