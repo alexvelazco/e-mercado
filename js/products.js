@@ -13,7 +13,8 @@ const listaArts = (listaArticulos) => {               //Defino la función
   for (let articulo of listaArticulos) {              //A cada "artículo" de la "listaArticulos"...
     const fila = document.createElement("div");       //...le creo un div (que irá dentro del div "Productos" de products.html) y será una fila de la tabla final
     fila.innerHTML =                                  //Se define cómo estará estructurada cada fila
-      `<div class="row" style="padding-left: 1em; padding-right: 1em ">
+    `<a href="product-info.html" class="list-group-item list-group-item-action">
+      <div class="row" style="padding-left: 1em; padding-right: 1em">
             <div class="col-3">
                 <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
             </div>
@@ -25,7 +26,8 @@ const listaArts = (listaArticulos) => {               //Defino la función
                 <p class="mb-1">` + articulo.description + `</p>
                 <p class="mb-1">` + articulo.currency + articulo.cost + `</p>
             </div>
-        </div>`;
+        </div>
+        </a>`;
 
         if (((mincost === undefined) || (mincost != undefined && parseInt(articulo.cost) >= mincost)) && //Si... mincost es indefinido o si no lo es y lo que hay en ese campo (el precio) es más de lo se pone como mínimo Y
             ((maxcost === undefined) || (maxcost != undefined && parseInt(articulo.cost) <= maxcost))){  //si maxcost es indefinido o si no lo es y lo que hay en ese campo (el precio) es menos de lo que se pone como máximo...
@@ -40,8 +42,8 @@ const listaArts = (listaArticulos) => {               //Defino la función
 document.addEventListener("DOMContentLoaded", function (e) {    
 //PETICIÓN DEL PRODUCTS_URL
   fetch(PRODUCTS_URL)                                           //Con fetch traigo la lista de productos alojada en PRODUCTS_URL
-    .then((lista) => lista.json())                              //"Entonces" cuando la trae, la convierte a .json
-    .then((lista) => {                                          //Empiezo una función que usará ("hará algo") con esa lista
+    .then((lista) => lista.json())                              //"Entonces" cuando la trae, la nombro "lista" y se convierte a .json
+    .then((lista) => {                                          //Empiezo una función que usará ("hará algo") con esa "lista"
       //listaArts(lista)                                        //Se coloca la tabla terminada en products.html
       sortAndShowProductos(ORDER_ASC_BY_COST, lista);           //Llama la función que ordena y muestra los productos (lista) según un orden (ASC como predeterminado)
     });

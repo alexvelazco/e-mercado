@@ -27,8 +27,15 @@
   background-color: rgba(34,158,189,0.8);
   font-weight: bold;
 }
-/*----------------------------------------ESTILOS LOGIN----------------------------------------*/
+/*----------------------------------------FIN ESTILOS LOGIN----------------------------------------*/
 /*----------------------------------------ESTILOS NAV----------------------------------------*/
+#buscar{
+  gap: 10px;
+}
+#lupa{
+  color: white;
+  margin-right: 10px;
+}
 #infoUsuario{
   display: flex;
   gap: 10px;
@@ -78,7 +85,50 @@
   width: 100px;
   font-weight: 600;
 }
-/*----------------------------------------ESTILOS NAV----------------------------------------*/
+/*----------------------------------------FIN ESTILOS NAV----------------------------------------*/
+/*----------------------------------------ESTILOS PRODUCT INFO----------------------------------------*/
+
+.mb{
+  text-align: end;
+}
+#comentarios{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#nuevocomentario{
+  margin-left: 5%;
+  size: 50%;
+}
+#nuevocomentariotxt{
+  align-items: stretch;
+  border-radius: 10px;
+}
+#puntuación{
+  margin-left: 1%;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 250%;
+}
+
+#puntuación input[type = "radio"]{
+  display:none;
+}
+
+#puntuación label:hover{
+  color: rgb(38, 183, 219)
+}
+#puntuación label:hover ~ label{
+  color: rgb(38, 183, 219);
+}
+#puntuación input[type = "radio"]:checked ~ label{
+  color:rgb(38, 183, 219);}
+
+#btnEnviarComentario{
+  align-items: flex-end;
+  width: 100%;
+}
+
+/*----------------------------------------FIN ESTILOS PRODUCT INFO----------------------------------------*/
 
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
@@ -219,5 +269,5 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: orange;
+  color: rgb(38, 183, 219);
 }
