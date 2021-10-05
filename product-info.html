@@ -22,71 +22,64 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda --<
+      
+      <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda ->
         <i class="fas fa-search" id="lupa"></i><input type="search">
       </div> -->
-      <div class="py-2 d-none d-md-inline-block" id="infoUsuario">
-        <div id="container-menu"> <!-- Div Menú -->
-          <div id="usertag"></div> <!-- Nombre de Usuario -->
-          <div id="desplegador"><i class="fas fa-chevron-down"></i></div> <!-- Botón desplegador -->
-          <ul id="menu">
-            <li class="menu_link"><a href="my-profile.html">Mi perfil</a>
-            </li>
-            <!-- <li class="menu_link"><a href="cart.html">Mi carrito</a></li> -->
-            <li><button id="SignOff" class="" type="button">Cerrar Sesión</button>       <!--Botón cerrar sesión-->
-            </li>
-          </ul>
+      <!-- MENÚ DESPLEGABLE -->
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="usertag" data-toggle="dropdown">
+        </button> <!-- Nombre de Usuario -->
+        <div class="dropdown-menu">                                     <!-- Div Menú -->
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" href="cart.html">Mi carrito</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="SignOff">Cerrar Sesión</button>    <!--Botón cerrar sesión-->
         </div>
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 4 (Fecha de entrega: 03/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
-
       <!-- ------------------ INFORMACIÓN DEL PRODUCTO ------------------ -->
-        <div class="container mt-5">
-          <div class="text-center p-4">
-            <h2>Descripción del producto</h2>
-            <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
-            
-          </div>
-          <h3 id="productName"></h3>
-          <hr class="my-3">
-          <dl>
-            <dt>Descripción:</dt>
-            <dd>
-              <p id="productDescription"></p>
-            </dd>
-            <dt>Categoría:</dt>
-            <dd>
-              <p id="category"></p>
-            </dd>
-
-            <dt>Precio:</dt>
-            <dd>
-              <span id="currency"></span> <span id="cost"></span>
-            </dd>
-
-            <dt>Cantidad de productos vendidos:</dt>
-            <dd>
-              <p id="soldCount"></p>
-            </dd>
-
-            <dt>Imágenes ilustrativas:</dt>
-            <dd>
-              <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
-              </div>
-            </dd>
-          </dl>
-        </div>
+  <div class="container mt-5">
+    <div class="text-center p-4">
+      <!-- <h2>Descripción del producto</h2>
+      <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p> -->
       
+<!---------------------QUIERO COLOCAR LA SEGUNDA FOTO COMO "PORTADA"--------------------->
+      
+    </div>
+    <h3 id="productName"></h3>
+    <hr class="my-3">
+    <dl>
+      <dt>Descripción:</dt>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
+      <dt>Categoría:</dt>
+        <dd>
+          <p id="category"></p>
+        </dd>
+      <dt>Precio:</dt>
+        <dd>
+          <span id="currency"></span> <span id="cost"></span>
+        </dd>
+      <dt>Cantidad de productos vendidos:</dt>
+        <dd>
+          <p id="soldCount"></p>
+        </dd>
+      <dt>Imágenes ilustrativas:</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" id="productImagesGallery"></div>
+        </dd>
+    </dl>
+<br>
+      <dt>Productos relacionados:</dt>
+        <dd>
+          <div id="fichaRelatedProducts"></div>
+        </dd>
+  </div>
+<br>
+
       <!-- ------------------ FIN INFORMACIÓN DEL PRODUCTO ------------------ -->
       <!-- ------------------ COMENTARIOS ------------------ -->
 

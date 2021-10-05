@@ -4,7 +4,7 @@ let product = {};
 //elementos HTML presentes.
   document.addEventListener("DOMContentLoaded", function (e) {    
 //TRAIGO LA INFORMACIÓN DEL PRODUCTO DESDE EL .JSON...
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){ //Traeme el los datos del .json "cuando tengas un ratito", cuando lo hagas ejecutá el "then" (función sin nombre con parámetro "" [respuesta de la promesa]), 
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){ //Traeme el los datos del .json "cuando tengas un ratito", cuando lo hagas ejecutá el "then" (función sin nombre con parámetro "resultObj" [respuesta de la promesa]), 
         if (resultObj.status === "ok"){                     //y si ese "resultObj" fue traido sin problemas...
             product = resultObj.data;                       //...los datos de ese objeto se renombran "product"
 
@@ -23,22 +23,30 @@ let product = {};
             costHTML.innerHTML = product.cost
             soldCountHTML.innerHTML = product.soldCount;
             categoryHTML.innerHTML = product.category;
-  
+
 //y finalmente muestro las imagenes en forma de galería
             showImagesGallery(product.images);
         }
     });
 
-    fetch(PRODUCT_INFO_COMMENTS_URL)                                     //Con fetch traigo la información del producto alojada en PRODUCTS_INFO_URL
-    .then((listaComentarios) => listaComentarios.json())                 //"Entonces" al traerla,, la nombra "listaComentarios" y la convierte a .json
-    .then((listaComentarios) => {                                        //Empiezo una función que usará ("hará algo") con esa lista
+    fetch(PRODUCT_INFO_COMMENTS_URL)                                    //Con fetch traigo la información del producto alojada en PRODUCTS_INFO_URL
+    .then((listaComentarios) => listaComentarios.json())                //"Entonces" al traerla, la nombra "listaComentarios" y la convierte a .json
+    .then((listaComentarios) => {                                       //Empiezo una función que usará ("hará algo") con esa lista
         //FUNCIÓN PARA ORDENAR LOS COMENTARIOS (POR FECHA)
-        const comentariosOrdenados = listaComentarios.sort((a, b) => {   //
-            if ( a.dateTime < b.dateTime ){ return -1; }                 //"Si a es menor b, se mueve pa'bajo...
-            if ( a.dateTime > b.dateTime ){ return 1; }                  //...si a es mayor que b, se mueve pa'rriba... 
-            return 0;                                                    //...si son iguales, se queda en el lugar"
+        const comentariosOrdenados = listaComentarios.sort((a, b) => {  //
+            if ( a.dateTime < b.dateTime ){ return -1; }                //"Si a es menor b, se mueve pa'bajo...
+            if ( a.dateTime > b.dateTime ){ return 1; }                 //...si a es mayor que b, se mueve pa'rriba... 
+            return 0;                                                   //...si son iguales, se queda en el lugar"
         });
-    comentarios(comentariosOrdenados)                                    //A "comentarios" le paso "comentariosOrdenados" como parámetro
+    comentarios(comentariosOrdenados)                                   //A "comentarios" le paso "comentariosOrdenados" como parámetro
+    });
+
+    fetch(PRODUCTS_URL)                                     //Con fetch traigo los datos de PRODUCTS_URL
+    .then((products) => products.json())                    //"Entonces" al traerla se nombra "products" y se convierte a .json
+    .then((products) => {
+        const pRelacionados = products.filter((auto, index) => //Creo "pRelacionados", el resultado de filtrar, de todos los índices de la lista general de productos (products = PRODUCTS_URL)...
+            product.relatedProducts.includes(index));          //...solo los índices que estén incluidos en la propiedad "relatedProducts" del producto en cuestión (PRODUCT_INFO_URL)...
+        productosRelacionados(pRelacionados)                   //A "productosRelacionados" le paso "pRelacionados" (los índices filtrados) de parámetro
     });
 });
 
@@ -52,12 +60,34 @@ function showImagesGallery(galeria){                  //
             <div class="d-block mb-4 h-100">
                 <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
-        </div>
-        `
+        </div>`
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;       //Coloca cada foto formateada en el div con ese id.
     }
 }
 
+//PRODUCTOS RELACIONADOS
+const productosRelacionados = (pRelacionados) => {
+    let info = document.getElementById("fichaRelatedProducts");    //Re-Defino como "info" a tenga id "fichaRelatedProducts"
+    info.innerHTML = "";                                           //Dejo vacío el lugar donde irá lo que se va a insertar
+    for (let producto of pRelacionados) {                          //A cada "producto" de "pRelacionados"...
+        const ficha = document.createElement("div");               //...le creo un div que será cada ficha de producto
+        ficha.innerHTML =                                          //Defino la estructura de la ficha
+        `<a href="product-info.html" class="list-group-item list-group-item-action">
+        <div class="row pRelacionado" style="padding-left: 1em; padding-right: 1em">
+            <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img">
+            <div class="">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="mb-1" style="font-weight: bold">` + producto.name + `</h4>
+                </div>
+                <p class="mb-1">` + producto.currency + " " + producto.cost + `</p>
+            </div>
+        </div>
+        </a>`;
+    info.appendChild(ficha)                                         //Inserta la ficha armada entre los productos relacionados
+    }
+};
+
+//COMENTARIOS
 const comentarios = (comentarios) => {                           //Defino la función
     let info = document.getElementById("comentarios");           //Re-Defino como "info" a lo que sea que encuentre bajo el id "comentarios"
     info.innerHTML = "";                                         //Dejo vacío el lugar donde irá lo que se va a insertar
@@ -118,13 +148,15 @@ const enviarComentario = () =>{
     //AGREGA EL NUEVO COMENTARIO Y PUNTUACIÓN
     let info = document.getElementById("comentarios");    //Re-Defino como "info" a lo que sea que encuentre bajo el id "comentarios"
       const fila = document.createElement("div");         //Se crea un div para cada nuevo comentario
+      const fecha = new Date()                            //.slice(-X) selecciona los X últimos dígitos de la cosa
       fila.innerHTML =`
       <div class="list-group-item list-group-item-action">
       <div class="row" style="padding-left: 5px; padding-right: 5px">
             <div class="col">
                 <div class="d-flex w-100 justify-content-between">
                     <h4 class="mb-1">` + localStorage.getItem("Usuario") + `</h4>
-                    <p class="mb">` + new Date() + `</p>
+                    <p class="mb">` + `${fecha.getFullYear()}-${('0' + (fecha.getMonth()+1)).slice(-2)}-${('0' + fecha.getDate()).slice(-2)}  
+                                       ${fecha.getHours()}:${('0' + fecha.getMinutes()).slice(-2)}:${('0' + fecha.getSeconds()).slice(-2)}` +`</p> 
                 </div>
                 <p class="mb-1">` + document.getElementById("nuevocomentariotxt").value + `</p>
                 <p class="mb">` + estrellas(puntuación) + `</p>
@@ -134,7 +166,6 @@ const enviarComentario = () =>{
         <br>`
           info.appendChild(fila)
     
-
     //RESETEO DE LA CAJA DE TEXTO Y DE LAS ESTRELLAS
     document.getElementById("nuevocomentariotxt").value = ""
     document.getElementById("star1").checked = false
@@ -143,32 +174,5 @@ const enviarComentario = () =>{
     document.getElementById("star4").checked = false
     document.getElementById("star5").checked = false
   }
-
   //FUNCIÓN DEL BOTÓN DE ENVIAR COMENTARIO
   document.getElementById("btnEnviarComentario").addEventListener("click", enviarComentario);
-
-
-
-
-
-  
-// let fecha = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' +  hoy.getDate();
-// let hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
-// let fechaYHora = fecha + ' ' + hora;
-
-// let hoy = new Date();
-// let año = hoy.getFullYear();
-// let mes = hoy.getMonth();
-//     // mes = ('0' + mes).slice(-2)
-// let dia = hoy.getDate();
-//     // dia = ('0' + dia).slice(-2)
-// let hora = hoy.getHours();
-// let minutos = hoy.getMinutes();
-// let segundos = hoy.getSeconds();
-
-// let fechaFormato = `${año}-${mes}-${dia} ${hora}:${minutos}:${segundos}`
-
-//console.log(fechaFormato)
-// console.log(año)
-// console.log(mes)
-// console.log(dia)

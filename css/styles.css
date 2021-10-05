@@ -82,7 +82,6 @@
   padding: 5px;
 }
 #SignOff{
-  width: 100px;
   font-weight: 600;
 }
 /*----------------------------------------FIN ESTILOS NAV----------------------------------------*/
@@ -109,11 +108,9 @@
   unicode-bidi: bidi-override;
   font-size: 250%;
 }
-
 #puntuación input[type = "radio"]{
   display:none;
 }
-
 #puntuación label:hover{
   color: rgb(38, 183, 219)
 }
@@ -121,13 +118,28 @@
   color: rgb(38, 183, 219);
 }
 #puntuación input[type = "radio"]:checked ~ label{
-  color:rgb(38, 183, 219);}
-
+  color:rgb(38, 183, 219);
+}
 #btnEnviarComentario{
   align-items: flex-end;
   width: 100%;
 }
-
+#fichaRelatedProducts{
+  display: flex;
+  gap: 20px;
+}
+.pRelacionado{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+.pRelacionado img{
+  width: 350px;
+}
 /*----------------------------------------FIN ESTILOS PRODUCT INFO----------------------------------------*/
 
 .jumbotron, .card-body, .container, .site-header{

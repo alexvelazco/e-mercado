@@ -24,7 +24,7 @@ const listaArts = (listaArticulos) => {               //Defino la función
                     <small class="text-muted">` + articulo.soldCount + ` artículos</small>
                 </div>
                 <p class="mb-1">` + articulo.description + `</p>
-                <p class="mb-1">` + articulo.currency + articulo.cost + `</p>
+                <p class="mb-1">` + articulo.currency + " " + articulo.cost + `</p>
             </div>
         </div>
         </a>`;

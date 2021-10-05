@@ -21,20 +21,36 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      <div class="py-2 d-none d-md-inline-block" id="infoUsuario">
-        <div id="container-menu"> <!-- Div Menú -->
-          <div id="usertag"></div> <!-- Nombre de Usuario -->
-          <div id="desplegador"><i class="fas fa-chevron-down"></i></div> <!-- Botón desplegador -->
+
+      <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda ->
+      <i class="fas fa-search" id="lupa"></i><input type="search">
+      </div> -->
+
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="usertag" data-toggle="dropdown">
+        </button> <!-- Nombre de Usuario -->
+        <div class="dropdown-menu">                                     <!-- Div Menú -->
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+          <a class="dropdown-item" href="cart.html">Mi carrito</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="SignOff">Logout</button>    <!--Botón cerrar sesión-->
+        </div>
+      </div>
+
+      <!-- <div class="py-2 d-none d-md-inline-block" id="infoUsuario">
+        <div id="container-menu"> 
+          <div id="usertag"></div> 
+          <div id="desplegador"><i class="fas fa-chevron-down"></i></div> <!-- Botón desplegador ->
           <ul id="menu">
-            <li class="menu_link"><a href="my-profile.html">Mi perfil</a>
-            </li>
-            <!-- <li class="menu_link"><a href="cart.html">Mi carrito</a></li> -->
-            <li><button id="SignOff" class="" type="button">Cerrar Sesión</button>       <!--Botón cerrar sesión-->
+            <li class="menu_link"><a href="my-profile.html">Mi perfil</a></li>
+            <li class="menu_link"><a href="cart.html">Mi carrito</a></li>
+            <div class="dropdown-divider"></div>
+            <li><button id="SignOff" class="" type="button">Cerrar Sesión</button>       
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
+      
     </div>
   </nav>
   <main role="main">
