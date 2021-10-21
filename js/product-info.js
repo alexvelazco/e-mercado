@@ -8,19 +8,27 @@ let product = {};
         if (resultObj.status === "ok"){                     //y si ese "resultObj" fue traido sin problemas...
             product = resultObj.data;                       //...los datos de ese objeto se renombran "product"
 
+            fetch(PRODUCTS_URL)                                     //Con fetch traigo los datos de PRODUCTS_URL
+            .then((products) => products.json())                    //"Entonces" al traerla se nombra "products" y se convierte a .json
+            .then((products) => {
+                const pRelacionados = products.filter((auto, index) => //Creo "pRelacionados", el resultado de filtrar, de todos los índices de la lista general de productos (products = PRODUCTS_URL)...
+                    product.relatedProducts.includes(index));          //...solo los índices que estén incluidos en la propiedad "relatedProducts" del producto en cuestión (PRODUCT_INFO_URL)...
+                productosRelacionados(pRelacionados)                   //A "productosRelacionados" le paso "pRelacionados" (los índices filtrados) de parámetro
+            });
+
 //renombra como "xxx"HTML a cada párrafo con id "xxx" correspondiente del HTML...
             let productNameHTML = document.getElementById("productName");
             let productDescriptionHTML = document.getElementById("productDescription");
-            let currencyHTML = document.getElementById("currency")
-            let costHTML = document.getElementById("cost")
+            let currencyHTML = document.getElementById("currency");
+            let costHTML = document.getElementById("cost");
             let soldCountHTML = document.getElementById("soldCount");
             let categoryHTML = document.getElementById("category");
 
 //...y luego se indica dónde colocar cada dato entrecomillado del recientemente nombrado "product" traído del .json en el "molde" del HTML
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
-            currencyHTML.innerHTML = product.currency
-            costHTML.innerHTML = product.cost
+            currencyHTML.innerHTML = product.currency;
+            costHTML.innerHTML = product.cost;
             soldCountHTML.innerHTML = product.soldCount;
             categoryHTML.innerHTML = product.category;
 
@@ -39,14 +47,6 @@ let product = {};
             return 0;                                                   //...si son iguales, se queda en el lugar"
         });
     comentarios(comentariosOrdenados)                                   //A "comentarios" le paso "comentariosOrdenados" como parámetro
-    });
-
-    fetch(PRODUCTS_URL)                                     //Con fetch traigo los datos de PRODUCTS_URL
-    .then((products) => products.json())                    //"Entonces" al traerla se nombra "products" y se convierte a .json
-    .then((products) => {
-        const pRelacionados = products.filter((auto, index) => //Creo "pRelacionados", el resultado de filtrar, de todos los índices de la lista general de productos (products = PRODUCTS_URL)...
-            product.relatedProducts.includes(index));          //...solo los índices que estén incluidos en la propiedad "relatedProducts" del producto en cuestión (PRODUCT_INFO_URL)...
-        productosRelacionados(pRelacionados)                   //A "productosRelacionados" le paso "pRelacionados" (los índices filtrados) de parámetro
     });
 });
 

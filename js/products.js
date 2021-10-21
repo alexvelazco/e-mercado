@@ -7,27 +7,27 @@ let mincost = undefined;                              //Establece como undefined
 let maxcost = undefined;                              //Establece como undefined lo que hay en el input de máximo (antes de escribir nada)
 
 //CREACIÓN DE LA TABLA DE ARTÍCULOS
-const listaArts = (listaArticulos) => {               //Defino la función
-  let listado = document.getElementById("Productos"); //Re-Defino como "listado" a lo que sea que encuentre bajo el id "Productos" (el div en products.html)
-  listado.innerHTML = "";                             //"Por las dudas", a ese div lo defino como vacío (borra lo que haya)
-  for (let articulo of listaArticulos) {              //A cada "artículo" de la "listaArticulos"...
-    const fila = document.createElement("div");       //...le creo un div (que irá dentro del div "Productos" de products.html) y será una fila de la tabla final
-    fila.innerHTML =                                  //Se define cómo estará estructurada cada fila
-    `<a href="product-info.html" class="list-group-item list-group-item-action">
-      <div class="row" style="padding-left: 1em; padding-right: 1em">
-            <div class="col-3">
-                <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
-            </div>
-            <div class="col">
-                <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">` + articulo.name + `</h4>
-                    <small class="text-muted">` + articulo.soldCount + ` artículos</small>
-                </div>
-                <p class="mb-1">` + articulo.description + `</p>
-                <p class="mb-1">` + articulo.currency + " " + articulo.cost + `</p>
-            </div>
-        </div>
-        </a>`;
+const listaArts = (listaArticulos) => {                 //Defino la función
+    let listado = document.getElementById("Productos"); //Re-Defino como "listado" a lo que sea que encuentre bajo el id "Productos" (el div en products.html)
+    listado.innerHTML = "";                             //"Por las dudas", a ese div lo defino como vacío (borra lo que haya)
+    for (let articulo of listaArticulos) {              //A cada "artículo" de la "listaArticulos"...
+      const fila = document.createElement("div");       //...le creo un div (que irá dentro del div "Productos" de products.html) y será una fila de la tabla final
+      fila.innerHTML =                                  //Se define cómo estará estructurada cada fila
+      `<a href="product-info.html" class="list-group-item list-group-item-action">
+        <div class="row" style="padding-left: 1em; padding-right: 1em">
+              <div class="col-3">
+                  <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
+              </div>
+              <div class="col">
+                  <div class="d-flex w-100 justify-content-between">
+                      <h4 class="mb-1">` + articulo.name + `</h4>
+                      <small class="text-muted">` + articulo.soldCount + ` artículos</small>
+                  </div>
+                  <p class="mb-1">` + articulo.description + `</p>
+                  <p class="mb-1">` + articulo.currency + " " + articulo.cost + `</p>
+              </div>
+          </div>
+          </a>`;
 
         if (((mincost === undefined) || (mincost != undefined && parseInt(articulo.cost) >= mincost)) && //Si... mincost es indefinido o si no lo es y lo que hay en ese campo (el precio) es más de lo se pone como mínimo Y
             ((maxcost === undefined) || (maxcost != undefined && parseInt(articulo.cost) <= maxcost))){  //si maxcost es indefinido o si no lo es y lo que hay en ese campo (el precio) es menos de lo que se pone como máximo...

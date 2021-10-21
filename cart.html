@@ -56,14 +56,94 @@
       </div>
     </div>
   </nav>
+  <div class="text-center p-4">
+    <h2>Su carrito de compra</h2>
+</div>
+
+  <div id="carrito">
+  </div>
+
+  <br>
+
+  <h4 id="subtotal" class="mb-3"></h4>
+
+<div id="finalCompra">
+  <div id="pago">
+    <h4>Selecciona una forma de pago:</h4>
+    <div class="col-md-7 d-block my-3">
+
+      <div class="custom-control custom-radio">
+        <input id="radioPay1" name="radioPay" type="radio" value="creditCard" class="custom-control-input" checked="" required="">
+        <label class="custom-control-label" for="radioPay1">Tarjeta de crédito</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input id="radioPay2" name="radioPay" type="radio" value="bankTrans" class="custom-control-input" required>
+        <label class="custom-control-label" for="radioPay2">Transferencia bancaria</label>
+      </div>
+    </div>
+  </div>
+
+  <div id="envio">
+    <h4>Detalles del envío:</h4>
+    <div class="col-md-7 mb-3">
+      <h5>País</h5>
+      <select class="custom-select d-block w-100" id="pais" required="">
+        <option value="">Elija el país de envío</option>
+        <option>Uruguay</option>
+        <option>Brasil</option>
+        <option>Argentina</option>
+        <option>Paraguay</option>
+        <option>Bolivia</option>
+        <option>Chile</option>
+      </select>
+    </div>
+
+    <div class="col-md-7 mb-3">
+      <label for="direccionEnvio"><h5>Dirección de envío</h5></label>
+      <input type="text" class="form-control" id="direccionEnvio" required="">
+    </div>
+    
+    <div class="col-md-7 d-block my-3">
+    <h5 class="">Tipo de envío</h5>
+      <div class="custom-control custom-radio">
+        <input id="premiumradio" name="tipoEnvio" type="radio" class="custom-control-input" checked="" required="">
+        <label class="custom-control-label" for="premiumradio">Premium (15%) - (2-5 días)</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input id="expressradio" name="tipoEnvio" type="radio" class="custom-control-input" required="">
+        <label class="custom-control-label" for="expressradio">Express (7%) - (5-8 días)</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input id="estandarradio" name="tipoEnvio" type="radio" class="custom-control-input" required="">
+        <label class="custom-control-label" for="estandarradio">Estándar (5%) - (12 a 15 días)</label>
+      </div>
+    </div>
+  </div>
+  
+<button type="submit" id="finalizarCompra" class="btn btn-primary btn-lg">Finalizar compra</button>
+<!-- <button type="submit" id="finalizarCompra" class="btn btn-primary btn-lg" onclick="finalizarCompra()">Finalizar compra</button> -->
+</div>
+
+  
+  
+  
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  
+
+
   <div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
+      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
   </div>
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
