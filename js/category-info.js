@@ -1,3 +1,4 @@
+//"use strict";
 var category = {};
 
 function showImagesGallery(array){

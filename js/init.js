@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(e){
   if (!localStorage.getItem("Usuario") && !window.location.href.includes("login")){     //Si no detecta que existe algo llamado "Usuario" (ver login.js) y en la url no dice "login"...
     window.location.href = "./login.html"                                               //...redirigir a login.html (dentro de la ventana, a una locación específica)
   } else if(!window.location.href.includes("login")){                                    //si no, pero sigue sin decir "login" en la URL...
-      document.getElementById("usertag").innerHTML = localStorage.getItem("Usuario");   //Coloca en el div de nombre de usuario (usertag) el valor de "Usuario" del localStorage
+      document.getElementById("usertag").innerHTML = localStorage.getItem("Usuario");   //...coloca en el div de nombre de usuario (usertag) el valor de "Usuario" del localStorage
       
       //FUNCIÓN DEL BOTÓN DE CIERRE DE SESIÓN
       document.getElementById("SignOff").addEventListener("click", logOff)

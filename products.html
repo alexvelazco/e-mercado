@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -22,7 +23,7 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      
+
       <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda ->
         <i class="fas fa-search" id="lupa"></i><input type="search">
       </div> -->
@@ -40,52 +41,56 @@
     </div>
   </nav>
 
-  <div class="text-center p-4"> <!--DIV DE TEXTO DE BIENVENIDA-->
-    <h2>Productos</h2>
-    <p class="lead">Verás aquí todos los productos de la categoría que seleccionaste.</p>
-  </div>
-
-  <div class="row">    <!--DIV DE ÓRDENES-->
-    <div class="col text-right">
-      <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-        <label class="btn btn-light active" id="sortAsc">
-          <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-amount-down-alt mr-1"></i>U$S
-        </label>
-        <label class="btn btn-light" id="sortDesc">
-          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>U$S
-        </label>
-        <label class="btn btn-light" id="sortBySoldCount">
-          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Rel.
-        </label>
-      </div>
+  <main role="main" class="pb-5">
+    <div class="text-center p-4">
+      <h2>Productos</h2>
+      <p class="lead">Verás aquí todos los productos de la categoría que seleccionaste.</p>
     </div>
-  </div>
 
-  <div class="row justify-content-end">              <!--DIV DE FILTROS-->
-    <div class="col-md-6"></div>
-      <div class="col-md-6 col-sm-12 mb-1 container">
-        <div class="row container p-0 m-0">
-          <div class="col">
-            <p class="font-weight-normal text-right my-2">Cost.</p>
+    <div class="container">
+      <div class="row">           <!--DIV DE ÓRDENES-->
+        <div class="col text-right">
+          <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+            <label class="btn btn-light active" id="sortAsc">
+              <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-amount-down-alt mr-1"></i>U$S
+            </label>
+            <label class="btn btn-light" id="sortDesc">
+              <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>U$S
+            </label>
+            <label class="btn btn-light" id="sortBySoldCount">
+              <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Rel.
+            </label>
           </div>
-          <div class="col">
-            <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
-          </div>
-          <div class="col">
-            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
-          </div>
-          <div class="col-3 p-0">
-            <div class="btn-group" role="group">
-              <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
-              <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">              <!--DIV DE FILTROS-->
+        <div class="col-md-6"></div>
+        <div class="col-md-6 col-sm-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-right my-2">Cost.</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
 
-  <div id="Productos">    <!--Div donde se inserta la tabla de de productos-->
-  </div>
+      <div class="row" id="Productos">    <!--Div donde se inserta la tabla de de productos-->
+      </div>
+    </div>
+  </main>
 
   <footer class="text-muted bg-light">
     <div class="container">
@@ -110,5 +115,4 @@
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
 </body>
-
 </html>

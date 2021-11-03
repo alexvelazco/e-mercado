@@ -1,3 +1,4 @@
+//"use strict";
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
@@ -47,7 +48,7 @@ function showCategoriesList(){
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-md-4">
                         <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
                     </div>
                     <div class="col">

@@ -171,7 +171,15 @@
 }*/
 
 /*----------------------------------------FIN ESTILOS CARRITO----------------------------------------*/
+/*----------------------------------------ESTILOS PERFIL----------------------------------------*/
+#profileInfo{
+  display: flex;
+  flex-direction: column;
+}
 
+
+
+/*----------------------------------------FIN ESTILOS PERFIL----------------------------------------*/
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
 }

@@ -45,27 +45,50 @@
       <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda ->
         <i class="fas fa-search" id="lupa"></i><input type="search">
       </div> -->
-      
+
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="usertag" data-toggle="dropdown">
         </button> <!-- Nombre de Usuario -->
-        <div class="dropdown-menu">                                     <!-- Div Menú -->
+        <div class="dropdown-menu">
+          <!-- Div Menú -->
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="cart.html">Mi carrito</a>
           <div class="dropdown-divider"></div>
-          <button class="dropdown-item" id="SignOff">Logout</button>    <!--Botón cerrar sesión-->
+          <button class="dropdown-item" id="SignOff">Logout</button>
+          <!--Botón cerrar sesión-->
         </div>
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main" class="pb-5">
+    <div class="text-center p-4">
+      <h2>Tu perfil</h2>
+      <p class="lead">Aquí verás la información de tu perfil</p>
     </div>
-  </div>
+
+    <form class="container" id="profileInfo">
+      <div id="name-lastname"> Nombre y Apellido:
+        <input type="text" id="inputName" placeholder="Nombre" autofocus="" required>
+        <input type="text" id="inputLastname" placeholder="Apellido">
+      </div>
+
+      <div id="age"> Edad:
+        <input type="text" id="inputAge" placeholder="Edad">
+      </div>
+
+      <div id="e-mail"> e-mail:
+        <input type="text" id="inputE-mail" placeholder="e-mail">
+      </div>
+
+      <div id="phone"> Teléfono:
+        <input type="text" id="inputPhone" placeholder="Teléfono">
+      </div>
+      <br>
+      <div>
+        <button type="button" id="SaveUser" class="btn btn-primary btn-lg">Guardar</button>
+      </div>
+    </form>
+  </main>
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>

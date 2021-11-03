@@ -1,3 +1,4 @@
+//"use strict";
 const ORDER_ASC_BY_COST = "ASC";                      //--\
 const ORDER_DESC_BY_COST = "DESC";                    //--->Constantes por comodidad relacionadas los órdenes
 const ORDER_BY_SOLD_COUNT = "Rel.";                   //--/
@@ -14,8 +15,8 @@ const listaArts = (listaArticulos) => {                 //Defino la función
       const fila = document.createElement("div");       //...le creo un div (que irá dentro del div "Productos" de products.html) y será una fila de la tabla final
       fila.innerHTML =                                  //Se define cómo estará estructurada cada fila
       `<a href="product-info.html" class="list-group-item list-group-item-action">
-        <div class="row" style="padding-left: 1em; padding-right: 1em">
-              <div class="col-3">
+        <div class="row">
+              <div class="col-md-4">
                   <img src="` + articulo.imgSrc + `" alt="` + articulo.description + `" class="img-thumbnail">
               </div>
               <div class="col">
