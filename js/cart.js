@@ -1,6 +1,8 @@
 //"use strict";
-//let articles = []  //
-//let cart = 
+
+const rgxCNum = /^\d{12,20}$/
+const rgxVenc = /^\d{2}-\d{2}$/
+const rgxCVC = /^\d{3}$/
 
 //Función que se ejecuta una vez que se haya lanzado el evento de que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -12,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
       showCarrito(articulos);          //Llamo showCarrito y le paso "articulos" (que es lo mismo que "cart.articles")
     }
   });
+  showFormaPago()
 });
-
 //ARMA Y MUESTRA EN PANTALLA LA INFORMACIÓN DEL JSON Y LLAMA A SUBTOTAL
 function showCarrito(cart) {
   let htmlContentToAppend = "";
@@ -43,8 +45,9 @@ function showCarrito(cart) {
     document.getElementById("carrito").innerHTML = htmlContentToAppend;
   }
   subtotal()
+  tipoEnvioF()
 }
-//FUNCIÓN PARA QUITAR ARTÍCULOS DEL CARRITO
+//FUNCIÓN PARA RESTAR ARTÍCULOS DEL CARRITO
 const restarArticulo = (index) => {         //
   if (articulos[index].count === 0) return; //Detiene la función cuando la cuenta de "articulos[index]" llega a 0
   articulos[index].count--                  //"articulos[index]" = indicativo de "ese artículo específico/ese articulo de entre todos, no otro"
@@ -66,26 +69,97 @@ function subtotal(){
       subtotal += Math.round(articulos[i].unitCost * articulos[i].count);
     }
   }
-  suma.innerHTML = "Subtotal: $" + subtotal;
+  suma.innerHTML = "Subtotal: $" + new Intl.NumberFormat("es-UY").format(subtotal); //<--Para separador de miles
+  return subtotal;
 }
+//SELECCIONO UN TIPO DE ENVÍO SUMO EL PORCENTAJE CORRESPONDIENTE
+function tipoEnvioF(){
+  const sumatotal = document.getElementById("total")
+  const premium  = document.getElementById("premiumradio")
+  const express  = document.getElementById("expressradio")
+  const estandar = document.getElementById("estandarradio")
 
-//Todo lo comentado
-//new Intl.NumberFormat("es-UY").format(subtotal) - Para separador de miles
+  let total = 0
 
-//document.getElementById("finCompra").addEventListener("click", finalizarCompra)
-// const finalizarCompra = () =>{
-//   alert("Todavía no se puede comprar... ;)")
-// }
-// let medioPago = () =>{
-// }
-// let metodoEnvio = () =>{
-// }
-// const finalizarCompra = () =>{
-//   if (medioPago && metodoEnvio){
-//     alert("Compra finalizada con éxito")
-//   } else {
-//     alert("Seleccione un medio de pago y un método de envío")
-//   }
-// }
+  if (premium.checked == true){
+    total = (subtotal()*1.15);
+    sumatotal.innerHTML = "Total: $" + new Intl.NumberFormat("es-UY").format(total);
+  }
+  if (express.checked == true){
+    total = (subtotal()*1.07);
+    sumatotal.innerHTML = "Total: $" + new Intl.NumberFormat("es-UY").format(total);
+  }
+  if (estandar.checked == true){
+    total = (subtotal()*1.05);
+    sumatotal.innerHTML = "Total: $" + new Intl.NumberFormat("es-UY").format(total);
+  }
+}
+//VALIDO QUE LOS MÉTODOS DE PAGO SE INGRESEN CORRECTAMENTE
+function validarPago(){
+  let nombre = document.getElementById("nombre").value
+  let numeroTarjeta = document.getElementById("numeroTarjeta").value
+  let vencimientoTarjeta = document.getElementById("vencimientoTarjeta").value
+  let CVCTarjeta = document.getElementById("CVCTarjeta").value
+  let numeroCuenta = document.getElementById("numeroCuenta").value
 
-//articulos = cart.articles;       //Al array dentro de ese objeto se le llama "articulos" (que original...¬¬)|Mirándolo bien, esta línea parece no hacer nada útil
+  if (document.getElementById("pagoCredit").checked == true){
+    if (nombre !== "" &&
+        rgxCNum.test(numeroTarjeta) &&
+        vencimientoTarjeta !== "" &&
+        rgxCVC.test(CVCTarjeta)){
+          $("#modalPago").modal('hide')
+    } else {
+      alert("Faltan campos por completar")
+    } return
+  } 
+  if (document.getElementById("pagoTrans").checked == true){
+    if (numeroCuenta !== ""){
+          $("#modalPago").modal('hide')
+    } else{
+      alert("Ingrese un número de cuenta válido") 
+    }
+  }
+}
+//FINALIZA LA COMPRA SI TODOS DATOS FUERON INGRESADOS CORRECTAMENTE
+function finalizarCompra(){
+  let nombre = document.getElementById("nombre").value
+  let numeroTarjeta = document.getElementById("numeroTarjeta").value
+  let vencimientoTarjeta = document.getElementById("vencimientoTarjeta").value
+  let CVCTarjeta = document.getElementById("CVCTarjeta").value
+  let numeroCuenta = document.getElementById("numeroCuenta").value
+
+  if (document.getElementById("pais").value == ""){
+    alert("Seleccione un país de envío");
+    return
+  }
+
+  if (document.getElementById("direccionEnvio").value == ""){
+    alert("Indique una dirección de envío");
+    return
+  }
+  
+  if (document.getElementById("pagoCredit").checked == true){
+    if (nombre == "" &&
+        !rgxCNum.test(numeroTarjeta) &&
+        vencimientoTarjeta == "" &&
+        !rgxCVC.test(CVCTarjeta)){
+      alert("Seleccione un método de pago");
+    } 
+  } if (document.getElementById("pagoTrans").checked == true){
+    if (numeroCuenta == ""){
+      alert("Seleccione un método de pago") ;
+    }
+  }
+  alert("¡Has comprado con éxito!");
+};
+//MOSTRAR LOS CAMPOS SEGÚN LA FORMA DE PAGO SELECCIONADA
+const showFormaPago = () => {
+  document.getElementById("pagoCredit").addEventListener("click", () => {
+    document.getElementById("datosTarjeta").style.display = "block";
+    document.getElementById("datosCuenta").style.display = "none";
+  });
+  document.getElementById("pagoTrans").addEventListener("click", () => {
+    document.getElementById("datosCuenta").style.display = "block";
+    document.getElementById("datosTarjeta").style.display = "none";
+  });
+};

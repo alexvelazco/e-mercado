@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
 <html lang="en">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -32,6 +33,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
+
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -43,107 +45,156 @@
       <!-- <div id="buscar" class="py-2 d-none d-md-inline-block"> <!-- Div Barra de búsqueda ->
         <i class="fas fa-search" id="lupa"></i><input type="search">
       </div> -->
-      
+
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="usertag" data-toggle="dropdown">
         </button> <!-- Nombre de Usuario -->
-        <div class="dropdown-menu">                                     <!-- Div Menú -->
+        <div class="dropdown-menu">
+          <!-- Div Menú -->
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="cart.html">Mi carrito</a>
           <div class="dropdown-divider"></div>
-          <button class="dropdown-item" id="SignOff">Logout</button>    <!--Botón cerrar sesión-->
+          <button class="dropdown-item" id="SignOff">Logout</button>
+          <!--Botón cerrar sesión-->
         </div>
       </div>
     </div>
   </nav>
+
   <div class="text-center p-4">
     <h2>Su carrito de compra</h2>
-</div>
-
-  <div id="carrito">
   </div>
 
+  <div id="carrito" class="container">
+  </div>
+
+  <div class="container">
+    <h4 id="subtotal" class="mb-3"></h4>
+  </div>
   <br>
+  <form class="needs-validation container" id="envio">
+    <div id="envio">
+      <h4>Detalles del envío:</h4>
+      <div class="col-md-7 d-block my-3">
+        <h5 class="">Tipo de envío</h5>
+        <div class="custom-control custom-radio">
+          <input id="premiumradio" name="tipoEnvio" type="radio" class="custom-control-input" required onclick="tipoEnvioF()" checked>
+          <label class="custom-control-label" for="premiumradio">Premium (15%) - (2-5 días)</label>
+        </div>
 
-  <h4 id="subtotal" class="mb-3"></h4>
+        <div class="custom-control custom-radio">
+          <input id="expressradio" name="tipoEnvio" type="radio" class="custom-control-input" required onclick="tipoEnvioF()">
+          <label class="custom-control-label" for="expressradio">Express (7%) - (5-8 días)</label>
+        </div>
 
-<div id="finalCompra">
-  <div id="pago">
-    <h4>Selecciona una forma de pago:</h4>
-    <div class="col-md-7 d-block my-3">
-
-      <div class="custom-control custom-radio">
-        <input id="radioPay1" name="radioPay" type="radio" value="creditCard" class="custom-control-input" checked="" required="">
-        <label class="custom-control-label" for="radioPay1">Tarjeta de crédito</label>
-      </div>
-
-      <div class="custom-control custom-radio">
-        <input id="radioPay2" name="radioPay" type="radio" value="bankTrans" class="custom-control-input" required>
-        <label class="custom-control-label" for="radioPay2">Transferencia bancaria</label>
+        <div class="custom-control custom-radio">
+          <input id="estandarradio" name="tipoEnvio" type="radio" class="custom-control-input" required onclick="tipoEnvioF()">
+          <label class="custom-control-label" for="estandarradio">Estándar (5%) - (12 a 15 días)</label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="envio">
-    <h4>Detalles del envío:</h4>
     <div class="col-md-7 mb-3">
       <h5>País</h5>
-      <select class="custom-select d-block w-100" id="pais" required="">
+      <select class="custom-select d-block w-100" id="pais" required>
         <option value="">Elija el país de envío</option>
         <option>Uruguay</option>
-        <option>Brasil</option>
         <option>Argentina</option>
-        <option>Paraguay</option>
         <option>Bolivia</option>
+        <option>Brasil</option>
         <option>Chile</option>
+        <option>Paraguay</option>
       </select>
     </div>
-
     <div class="col-md-7 mb-3">
-      <label for="direccionEnvio"><h5>Dirección de envío</h5></label>
-      <input type="text" class="form-control" id="direccionEnvio" required="">
+      <label for="direccionEnvio">
+        <h5>Dirección de envío</h5>
+      </label>
+      <input type="text" class="form-control" id="direccionEnvio" required placeholder="Estado, Ciudad, Calle, Nº de puerta">
     </div>
-    
-    <div class="col-md-7 d-block my-3">
-    <h5 class="">Tipo de envío</h5>
-      <div class="custom-control custom-radio">
-        <input id="premiumradio" name="tipoEnvio" type="radio" class="custom-control-input" checked="" required="">
-        <label class="custom-control-label" for="premiumradio">Premium (15%) - (2-5 días)</label>
-      </div>
-
-      <div class="custom-control custom-radio">
-        <input id="expressradio" name="tipoEnvio" type="radio" class="custom-control-input" required="">
-        <label class="custom-control-label" for="expressradio">Express (7%) - (5-8 días)</label>
-      </div>
-
-      <div class="custom-control custom-radio">
-        <input id="estandarradio" name="tipoEnvio" type="radio" class="custom-control-input" required="">
-        <label class="custom-control-label" for="estandarradio">Estándar (5%) - (12 a 15 días)</label>
-      </div>
+    <br>
+    <div>
+      <h4 id="total" class="mb-3"></h4>
     </div>
+    <br>
+        <!-- Button trigger modal -->
+        <div class="col-md-7 mb-3">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPago">
+            Forma de pago
+          </button>
+        </div>
+    <br>
+  </form>
+  <div class="container">
+  <button id="finalizarCompra" class="btn btn-primary btn-lg" onclick="finalizarCompra()">Finalizar compra</button>
   </div>
-  
-<button type="submit" id="finalizarCompra" class="btn btn-primary btn-lg">Finalizar compra</button>
-<!--
-<button type="submit" id="finalizarCompra" class="btn btn-primary btn-lg" onclick="finalizarCompra()">Finalizar compra</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="">Selecciona una forma de pago:</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="pago">
+              <h4>Forma de pago:</h4>
+              <div class="custom-control custom-radio">
+                <input id="pagoCredit" name="radioPay" type="radio" value="creditCard" class="custom-control-input" required checked>
+                <label class="custom-control-label" for="pagoCredit">Tarjeta de crédito</label>
+                <div id="datosTarjeta" class="mb-3">
+                  <h6>Datos de su tarjeta</h6>
+                  <div id="camposTarjeta">
+                    Nombre completo:
+                    <input type="text" class="form-control" id="nombre">
+                    Número de tarjeta:
+                    <input type="text" minlength="12" maxlength="19" class="form-control" id="numeroTarjeta" placeholder="Entre 12 y 20 caracteres">
+                    Fecha de vencimiento:
+                    <input type="text" class="form-control" id="vencimientoTarjeta" placeholder="XX/XX">
+                    CVC:
+                    <input type="text" minlength="3" maxlength="3"class="form-control" id="CVCTarjeta" placeholder="XXX">
+                  </div>
+                </div>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="pagoTrans" name="radioPay" type="radio" value="bankTrans" class="custom-control-input" required>
+                <label class="custom-control-label" for="pagoTrans">Transferencia bancaria</label>
+                <div id="datosCuenta" class="mb-3" style="display: none;">
+                  <h6>Datos de su cuenta</h6>
+                  <div>
+                    Número de cuenta:
+                    <input type="text" class="form-control" id="numeroCuenta" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="guardar" onclick="validarPago()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <div class="alert fade" role="alert" id="alertResult">
+    <span id="resultSpan"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
-
-  
-  
-  
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  
-
-
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
-
 
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -161,3 +212,7 @@
 </body>
 
 </html>
+
+<!-- <div class="card-number">
+  <input type="text" class="card-no" step="4" palceholder="1234 5678 5869 1234" pattern="^[0-9].{15,}">
+</div> -->
